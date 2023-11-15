@@ -1,0 +1,123 @@
+.home {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.home .div-2 {
+    background-color: #ffffff;
+    height: 1024px;
+    overflow: hidden;
+    position: relative;
+    width: 1440px;
+}
+
+.home .group-2 {
+    left: 663px !important;
+    position: absolute !important;
+    top: 161px !important;
+}
+
+.home .component-1 {
+    left: 49px !important;
+    position: absolute !important;
+    top: 161px !important;
+}
+
+.home .overlap {
+    background-color: #99a7ff;
+    border-radius: 40px;
+    height: 174px;
+    left: 663px;
+    position: absolute;
+    top: 812px;
+    width: 719px;
+}
+
+.home .text-wrapper-3 {
+    color: #000000;
+    font-family: "Lekton-Regular", Helvetica;
+    font-size: 40px;
+    font-weight: 400;
+    left: 148px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 76px;
+    width: 387px;
+}
+
+.home .drop-down-arrow {
+    height: 49px;
+    left: 57px;
+    object-fit: cover;
+    position: absolute;
+    top: 70px;
+    width: 49px;
+}
+
+.home .overlap-group {
+    height: 56px;
+    left: 1022px;
+    position: absolute;
+    top: 71px;
+    width: 463px;
+}
+
+.home .text-wrapper-4 {
+    color: #000000;
+    font-family: "Lekton-Regular", Helvetica;
+    font-size: 40px;
+    font-weight: 400;
+    left: 256px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 7px;
+    width: 207px;
+}
+
+.home .text-wrapper-5 {
+    color: #000000;
+    font-family: "Lekton-Regular", Helvetica;
+    font-size: 40px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 7px;
+    width: 263px;
+}
+
+.home .user {
+    height: 49px;
+    left: 197px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 49px;
+}
+
+.home .leaderboard-instance {
+    left: 49px !important;
+    position: absolute !important;
+    top: 605px !important;
+}
+
+.home .personal-progress-instance {
+    left: 49px !important;
+    position: absolute !important;
+    top: 812px !important;
+}
+
+.home .bell {
+    height: 49px;
+    left: 955px;
+    object-fit: cover;
+    position: absolute;
+    top: 71px;
+    width: 49px;
+}
