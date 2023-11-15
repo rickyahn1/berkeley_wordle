@@ -4,6 +4,7 @@ import "../styles/Home.css"
 function Home() {
     return (
         <div>
+            "Hello"
         </div>
     )
 }
