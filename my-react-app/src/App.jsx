@@ -14,8 +14,6 @@ function App() {
   return (
     <main>
       {page === 'home' && <Home onPageChange={handlePageChange} />}
-      {/* {page === 'cs161' && <CS161 onPageChange={handlePageChange} />}
-      {page === 'cs162' && <CS162 onPageChange={handlePageChange} />} */}
     </main>
   )
 }
