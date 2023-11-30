@@ -2,10 +2,11 @@ import { useState } from 'react'
 import './App.css'
 
 import React from 'react';
-import Home from './pages/Home';
+import Game from './pages/Game';
+
 
 function App() {
-  const [page, setPage] = useState('home');
+  const [page, setPage] = useState('game');
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
@@ -13,7 +14,7 @@ function App() {
 
   return (
     <main>
-      {page === 'home' && <Home onPageChange={handlePageChange} />}
+      {page === 'game' && <Game onPageChange={handlePageChange} />}
     </main>
   )
 }

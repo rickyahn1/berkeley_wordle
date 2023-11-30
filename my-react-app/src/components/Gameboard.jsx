@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from 'styled-components';
-import Keyboard from "../components/Keyboard";
 
 const Main = styled.main`
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
@@ -66,12 +65,9 @@ const Tile = styled.div`
   text-transform: uppercase;
 `;
 
-function Game() {
-  
-    return (
+function GameBoard() {
     <Main>
       <Header>WORDLE</Header>
-      <br></br>
       <GameSection>
         <TileContainer>
           {[0, 1, 2, 3, 4, 5].map((i) => (
@@ -83,11 +79,7 @@ function Game() {
           ))}
         </TileContainer>
       </GameSection>
-      <br></br>
-      <Keyboard/>
-      
     </Main>
-  );
 };
 
-export default Game;
+export default GameBoard;
