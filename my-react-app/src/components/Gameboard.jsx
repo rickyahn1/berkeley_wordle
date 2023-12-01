@@ -1,85 +1,38 @@
 import React from "react";
-import styled from 'styled-components';
 
-const Main = styled.main`
-  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+const GameBoard = ({ guesses }) => {
+  // const position = checkRow();
+  // console.log("position is " + position);
+  // const checkPostion = () => {
+  //   if (position == "exact") {
+  //     return "tile exact";
+  //   } else if ((position = "wrong")) {
+  //     return "tile wrong";
+  //   } else {
+  //     return "tile";
+  //   }
+  // };
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 100%;
-  height: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-`;
-
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 100%;
-
-  border-bottom: 1px solid #3a3a3c;
-
-  font-weight: 700;
-  font-size: 3.6rem;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
-`;
-
-const GameSection = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-`;
-
-const TileContainer = styled.div`
-  display: grid;
-  grid-template-rows: repeat(6, 1fr);
-  grid-gap: 5px;
-
-  height: 420px;
-  width: 350px;
-`;
-
-const TileRow = styled.div`
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 5px;
-`;
-
-const Tile = styled.div`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  border: 2px solid #3a3a3c;
-  font-size: 3.2rem;
-  font-weight: bold;
-  line-height: 3.2rem;
-  text-transform: uppercase;
-`;
-
-function GameBoard() {
-    <Main>
-      <Header>WORDLE</Header>
-      <GameSection>
-        <TileContainer>
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <TileRow key={i}>
-              {[0, 1, 2, 3, 4].map((i) => (
-                <Tile key={i}></Tile>
-              ))}
-            </TileRow>
-          ))}
-        </TileContainer>
-      </GameSection>
-    </Main>
+  return (
+    <>
+      <div className="tile-container">
+        {/* display tiles */}
+        {guesses.map((guessRow, guessRowIndex) => (
+          <div id={"guessRow" + guessRowIndex} key={guessRowIndex}>
+            {guessRow.map((guessCol, guessIndex) => (
+              <div
+                className="tile"
+                id={"guessRow-" + guessRowIndex + "-guessCol-" + guessIndex}
+                key={guessIndex}
+              >
+                {guessCol}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default GameBoard;

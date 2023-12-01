@@ -1,93 +1,150 @@
-import React, { useEffect } from "react";
-import styled from 'styled-components';
-import Keyboard from "../components/Keyboard";
+import { useState, useEffect } from "react";
 
-const Main = styled.main`
-  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+import GameBoard from "../components/GameBoard";
+import KeyBoard from "../components/KeyBoard";
 
-  width: 100%;
-  height: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-`;
+import '../styles/Game.css'
 
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 100%;
+let words = ["Rocks", "Paper", "Knife"];
+let word = "";
 
-  border-bottom: 1px solid #3a3a3c;
-
-  font-weight: 700;
-  font-size: 3.6rem;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
-`;
-
-const GameSection = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-`;
-
-const TileContainer = styled.div`
-  display: grid;
-  grid-template-rows: repeat(6, 1fr);
-  grid-gap: 5px;
-
-  height: 420px;
-  width: 350px;
-`;
-
-const TileRow = styled.div`
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 5px;
-`;
-
-const Tile = styled.div`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  border: 2px solid #3a3a3c;
-  font-size: 3.2rem;
-  font-weight: bold;
-  line-height: 3.2rem;
-  text-transform: uppercase;
-`;
+let currentRow = 0;
+let currentTile = 0;
+let isGameOver = false;
 
 function Game() {
-  
-    return (
-    <Main>
-      <Header>WORDLE</Header>
-      <br></br>
-      <GameSection>
-        <TileContainer>
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <TileRow key={i}>
-              {[0, 1, 2, 3, 4].map((i) => (
-                <Tile key={i}></Tile>
-              ))}
-            </TileRow>
-          ))}
-        </TileContainer>
-      </GameSection>
-      <br></br>
-      <Keyboard/>
-      
-    </Main>
+  const [guesses, setGuesses] = useState([
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+  ]);
+
+  let guessRows = [...guesses];
+
+  useEffect(() => {
+    // random word picker
+    word = words[Math.floor(Math.random() * words.length)].toUpperCase();
+    console.log(word);
+  }, []);
+
+  const handleClick = (letter) => {
+    // check game over
+    checkGameOver();
+
+    if (!isGameOver) {
+      // console.log(letter);
+      if (letter === "«") {
+        delLetter();
+        return;
+      }
+      if (letter === "ENTER") {
+        newLine();
+        return;
+      }
+      addLetter(letter);
+    }
+  };
+
+  const addLetter = (letter) => {
+    if (currentTile < 5 && currentRow < 6) {
+      guessRows[currentRow][currentTile] = letter;
+      setGuesses(guessRows);
+      currentTile++;
+    }
+  };
+
+  const delLetter = () => {
+    if (currentTile > 0) {
+      currentTile--;
+      guessRows[currentRow][currentTile] = "";
+      setGuesses(guessRows);
+    }
+  };
+
+  const newLine = () => {
+    if (currentTile > 4) {
+      checkRow();
+      if (currentRow < 5) {
+        currentRow++;
+        currentTile = 0;
+      } else {
+        isGameOver = true;
+        checkGameOver();
+        return;
+      }
+    }
+  };
+
+  const checkGameOver = () => {
+    if (isGameOver) {
+      toast.info("Try Again !!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  };
+
+  const checkRow = () => {
+    // count the corrent word position
+    let count = 0;
+
+    // loop the letter of current row
+    guesses[currentRow].map((letter, letterId) => {
+      // getting tile by id
+      const tile = document.getElementById(
+        "guessRow-" + currentRow + "-guessCol-" + letterId
+      );
+
+      if (word.includes(letter)) {
+        //check poisition of letter
+        if (letter === word[letterId]) {
+          // color the exact position tile
+          tile.style.backgroundColor = "#538d4e";
+          tile.style.border = "none";
+          count++;
+        } else {
+          // color the wrong position tile
+          tile.style.backgroundColor = "#b59f3a";
+          tile.style.border = "none";
+        }
+      } else {
+        // color the wrong position tile
+        tile.style.backgroundColor = "#3a3a3c";
+        tile.style.border = "none";
+
+        // disable key from keyboard
+        guesses[currentRow].map((key) => {
+          //getting keyboard key by id
+          const keyButton = document.getElementById(key);
+          if (letter === key) {
+            keyButton.style.backgroundColor = "#3a3a3c";
+            keyButton.disabled = "true";
+          }
+        });
+      }
+    });
+    if (count == 5) {
+      toast.success("Congratlations !!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  };
+
+  return (
+    <>
+      <div className="game-container">
+        <ToastContainer />
+        <div className="title-container">Wordle</div>
+        <GameBoard guesses={guesses} />
+        <KeyBoard guesses={guesses} handleClick={handleClick} />
+      </div>
+    </>
   );
-};
+}
 
 export default Game;
