@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
-import GameBoard from "../components/GameBoard";
-import KeyBoard from "../components/KeyBoard";
+import GameBoard from "../components/Gameboard";
+import KeyBoard from "../components/Keyboard";
 
 import '../styles/Game.css'
 
-let words = ["Rocks", "Paper", "Knife"];
+let words = ["Haste", "Evans", "Logic", "Glade", "Major", "Bears", "Greek", "Plaza", "Class", "Creek", "Study", "Grove"];
 let word = "";
 
 let currentRow = 0;
@@ -29,7 +29,8 @@ function Game() {
 
   useEffect(() => {
     // random word picker
-    word = words[Math.floor(Math.random() * words.length)].toUpperCase();
+    var randomIndex = Math.floor(Math.random() * words.length);
+    word = words[randomIndex].toUpperCase();
     console.log(word);
   }, []);
 
