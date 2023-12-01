@@ -1,17 +1,6 @@
 import React from "react";
 
 const GameBoard = ({ guesses }) => {
-  // const position = checkRow();
-  // console.log("position is " + position);
-  // const checkPostion = () => {
-  //   if (position == "exact") {
-  //     return "tile exact";
-  //   } else if ((position = "wrong")) {
-  //     return "tile wrong";
-  //   } else {
-  //     return "tile";
-  //   }
-  // };
 
   return (
     <>
