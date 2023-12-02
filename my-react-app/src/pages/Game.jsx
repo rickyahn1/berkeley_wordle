@@ -86,6 +86,10 @@ function Game() {
     if (isGameOver) {
       toast.info("Try Again !!", {
         position: toast.POSITION.TOP_CENTER,
+        style: {
+          color: '#ffffff', // Set your desired font color
+          background: '#3498db', // Set your desired background color
+        },
       });
     }
   };
@@ -131,6 +135,10 @@ function Game() {
     if (count == 5) {
       toast.success("Congratlations !!", {
         position: toast.POSITION.TOP_CENTER,
+        style: {
+          color: '#ffffff', // Set your desired font color
+          background: '#3498db', // Set your desired background color
+        },
       });
     }
   };
