@@ -124,7 +124,6 @@ function Game() {
           const keyButton = document.getElementById(key);
           if (letter === key) {
             keyButton.style.backgroundColor = "#3a3a3c";
-            keyButton.disabled = "true";
           }
         });
       }
