@@ -139,7 +139,7 @@ function Game() {
     <>
       <div className="game-container">
         <ToastContainer />
-        <div className="title-container">Wordle</div>
+        <div className="title-container">Berkeley Wordle</div>
         <GameBoard guesses={guesses} />
         <KeyBoard guesses={guesses} handleClick={handleClick} />
       </div>
